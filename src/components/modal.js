@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Modal = ({ isShowing, hide }) => isShowing ? ReactDOM.createPortal(
+const Modal = ({ isShowing, hide, showItems }) => isShowing ? ReactDOM.createPortal(
   <React.Fragment>
     <div className="modal-overlay"/>
     <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
@@ -12,7 +12,7 @@ const Modal = ({ isShowing, hide }) => isShowing ? ReactDOM.createPortal(
           </button>
         </div>
         <p>
-          save callBack items
+          save callBack ItemsList in console
         </p>
       </div>
     </div>

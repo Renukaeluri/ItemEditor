@@ -4,19 +4,13 @@ import Checkbox from './checkbox';
 import Select from './select';
 import Modal from './modal';
 
-// export default class ItemEditor extends Component {
-
 export const ItemEditor = () => {
   
   const [fieldValue, setFieldValue] = useState ('');
-
+  const [fieldId, setFieldId] = useState ('');
   const [fieldType, setFieldType] = useState ([]);
   const [fieldOptions, setFieldOptions] = useState ([]);
-
   const [Field1, setField1] = useState ('');
-
-  const [selectedCheckBox, setSelectedCheckBox] = useState (false);
-
   const [selectedOption, setSelectedOption] = useState ('');
 
   const [data, setData] = useState ([]);
@@ -24,15 +18,10 @@ export const ItemEditor = () => {
   const [undoStack, setUndo] = useState ([]);
   const [redoStack, setRedo] = useState ([]);
 
-  const [fieldId, setFieldId] = useState ('');
-
   const [previousState, setPreviousState] = useState ([]);
 
   const [modal, setModal] = useState(false)
   const [isShowing, setIsShowing] = useState (true);
-
-
-  let prev = [];
 
   const getData = () => {
     fetch ('./data.json', {
@@ -51,7 +40,7 @@ export const ItemEditor = () => {
         let firstItem = []
 
         data.map(item => {
-          if(item.id == 1) {
+          if(item.id === 1) {
             firstItem = {
               id: item.id,
                 fields: {
@@ -86,7 +75,7 @@ export const ItemEditor = () => {
     } else {
       let currentState = [];
       data.items.map (item => {
-        if (item.id == fieldId) {
+        if (item.id === fieldId) {
           currentState = {
             id: item.id,
             fields: {
@@ -118,7 +107,7 @@ export const ItemEditor = () => {
     }
 
     setFieldId (item.id);
-    item.fields.fieldType != undefined && setFieldType (item.fields.fieldType);
+    item.fields.fieldType !== undefined && setFieldType (item.fields.fieldType);
     setFieldOptions (item.fields.fieldOptions);
     setFieldValue (item.fields.fieldValue);
 
@@ -126,16 +115,10 @@ export const ItemEditor = () => {
 
     fieldOptions.map (option => {
       item.fields.fieldValue.map (value => {
-        if (option.optionValue == value) {
+        if (option.optionValue === value) {
           setSelectedOption (option.optionName);
         }
       });
-    });
-
-    item.fields.fieldValue.map (value => {
-      if (typeof value == 'boolean') {
-        setSelectedCheckBox (value);
-      }
     });
   };
 
@@ -146,7 +129,7 @@ export const ItemEditor = () => {
     setRedo ([]);
 
     data.items.map (item => {
-      if (item.id == fieldId) {
+      if (item.id === fieldId) {
         currentState = {
           id: item.id,
           fields: {
@@ -161,10 +144,7 @@ export const ItemEditor = () => {
   };
 
   const handleSave = () => {
-
-    console.log("save callBack")
     console.log(previousState);
-
     setModal(true);
 
   }
@@ -176,23 +156,22 @@ export const ItemEditor = () => {
   const handleOnChange = (e, i, inputType) => {
     const items = [...fieldValue];
 
-    if (inputType == 'singleInput') {
+    if (inputType === 'singleInput') {
       items[i] = e.target.value;
     }
 
-    if (inputType == 'selectOption') {
+    if (inputType === 'selectOption') {
       fieldOptions.map (option => {
-        if (e.target.value == option.optionName) {
+        if (e.target.value === option.optionName) {
           items[i] = option.optionValue;
           setSelectedOption (option.optionName);
         }
       });
     }
 
-    if (inputType == 'selectCheckBox') {
+    if (inputType === 'selectCheckBox') {
       let toBool = !!JSON.parse (String (e.target.value).toLowerCase ());
       items[i] = !toBool;
-      setSelectedCheckBox (toBool);
     }
 
     setFieldValue (items);
@@ -284,6 +263,7 @@ export const ItemEditor = () => {
           <Modal 
             isShowing={isShowing}
             hide={modalHide}
+            showItems = {previousState}
           />
         }
 

@@ -19,10 +19,6 @@ SingleInput.propTypes = {
   inputType: PropTypes.oneOf (['text', 'number']).isRequired,
   value: PropTypes.string.isRequired || PropTypes.oneOf (['text', 'number']).isRequired,
   title: PropTypes.string.isRequired,
-  content: PropTypes.oneOfType ([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
 };
 
 export default SingleInput;
