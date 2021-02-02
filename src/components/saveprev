@@ -1,0 +1,155 @@
+import React, {useState, useEffect} from 'react';
+import SingleInput from './singleInput';
+import Checkbox from './checkbox';
+import Select from './select';
+
+// export default class ItemEditor extends Component {
+
+export const ItemEditor1 = () => {
+  const [fieldValue, setFieldValue] = useState ('');
+  const [fieldName, setFieldName] = useState ('');
+
+  const [fieldType, setFieldType] = useState ([]);
+  const [fieldOptions, setFieldOptions] = useState ([]);
+
+  const [Field1, setField1] = useState ('');
+
+  const [toggleCheckBox, settoggleCheckBox] = useState (false);
+  const [selectedCheckBox, setSelectedCheckBox] = useState (false);
+
+  const [selectedOption, setSelectedOption] = useState ('');
+
+  const [data, setData] = useState ([]);
+
+  const [initialData, setInitialData] = useState ([]);
+
+  const [undoStack, setUndo] = useState ([]);
+  const [redoStack, setRedo] = useState ([]);
+
+  const [dataChanged, setDataChanged] = useState ([]);
+
+  const [fieldId, setFieldId] = useState ('');
+
+  const [fieldInputValue, setFieldInputValue] = useState ('');
+
+  const getData = () => {
+    fetch ('./data.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then (function (response) {
+        console.log (response);
+        return response.json ();
+      })
+      .then (function (myJson) {
+        console.log (myJson);
+        setData (myJson);
+      });
+  };
+
+  useEffect (() => {
+    getData ();
+  }, []);
+
+  const handleUndo = () => {};
+
+  const handleRedo = () => {};
+
+  const handleItemClick = item => {
+    console.log (item);
+    setFieldId (item.id);
+    setFieldName (item.fields.fieldName);
+    setFieldType (item.fields.fieldType);
+    setFieldOptions (item.fields.fieldOptions);
+
+    let fieldOptions = item.fields.fieldOptions;
+
+    item.fields.fieldValue.map (value => {
+      if (typeof value == 'string') {
+        setFieldInputValue (value);
+      }
+      if (typeof value == 'number') {
+        fieldOptions.map (option => {
+          if (option == value) {
+            setSelectedOption (option);
+          }
+        });
+      }
+    });
+  };
+
+  const handleOnChange = (e, inputType) => {};
+
+  return (
+    <div className="item-editor">
+      <div className="header">
+        <span> Item Editor </span>
+
+        <div className="header-buttons">
+          <button onClick={handleUndo}> Undo </button> &nbsp;
+          <button onClick={handleRedo}> Redo </button> &nbsp;&nbsp;&nbsp;
+
+          <button> Save </button> &nbsp;
+          <button> Cancel </button>
+        </div>
+
+      </div>
+
+      <div className="body">
+
+        <div className="items">
+          {data.items &&
+            data.items.length > 0 &&
+            data.items.map (item => (
+              <table className="" key={item.id}>
+                <colgroup>
+                  <col />
+                  <col />
+                </colgroup>
+                <tbody className="ant-table-tbody">
+                  <p onClick={() => handleItemClick (item)}> {item.name} </p>
+                </tbody>
+              </table>
+            ))}
+        </div>
+
+        <div className="fields">
+          {fieldType.map (item => (
+            <div key={item}>
+              {item == 'text' &&
+                <SingleInput
+                  inputType="text"
+                  title={'Field 1'}
+                  content={Field1}
+                  value={fieldInputValue}
+                  onChange={e => handleOnChange (e, 'singleInput')}
+                />}
+              {item == 'option' &&
+                <Select
+                  title={'Field 2'}
+                  controlFunc={e => handleOnChange (e, 'selectOption')}
+                  options={fieldOptions}
+                  selectedOption={selectedOption}
+                />}
+              {' '}
+              <br />
+
+              {item == 'toggle' &&
+                <Checkbox
+                  title={'Field 3'}
+                  type={'checkbox'}
+                  controlFunc={e => handleOnChange (e, 'selectCheckBox')}
+                  options={toggleCheckBox}
+                  selectedOptions={selectedCheckBox}
+                />}
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  );
+};

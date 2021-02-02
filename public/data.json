@@ -1,0 +1,128 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "ABC",
+      "fields": 
+        {
+          "id": "id1",
+          "fieldName": "name 1",
+          "fieldType": [
+            "text",
+            "text",
+            "text",
+            "option",
+            "toggle"
+          ],
+          "fieldValue": [
+            "a",
+            "b",
+            "c",
+            3,
+            true
+          ],
+          "fieldOptions": [
+            {
+              "optionName": "opt 1",
+              "optionValue": 1 
+            },{
+              "optionName": "opt 2",
+              "optionValue": 2
+            },{
+              "optionName": "opt 3",
+              "optionValue": 3
+            }
+          ]
+        }
+
+    },
+    {
+      "id": 2,
+      "name": "DEF",
+      "fields": 
+        {
+          "id": "id1",
+          "fieldName": "name 2",
+          "fieldType": [
+            "text",
+            "option",
+            "toggle"
+          ],
+          "fieldValue": [
+            "def",
+            3,
+            true
+          ],
+          "fieldOptions": [
+            {
+              "optionName": "ABC",
+              "optionValue": 1
+            },
+            {
+              "optionName": "DEF",
+              "optionValue": 2
+            },
+            {
+              "optionName": "GHI",
+              "optionValue": 3
+            },
+            {
+              "optionName": "JKL",
+              "optionValue": 4
+            }
+          ]
+        }
+      
+    },
+    {
+      "id": 3,
+      "name": "GHI",
+      "fields": 
+        {
+          "id": "id1",
+          "fieldName": "name 3",
+          "fieldType": [
+            "option",
+            "toggle"
+          ],
+          "fieldValue": [
+            3,
+            true
+          ],
+          "fieldOptions": [
+            {
+              "optionName": "123",
+              "optionValue": 1
+            },
+            {
+              "optionName": "455",
+              "optionValue": 2
+            }
+          ]
+        }
+      
+    },
+    {
+      "id": 4,
+      "name": "JKL",
+      "fields": 
+        {
+          "id": "id1",
+          "fieldName": "name 4",
+          "fieldType": [
+            "toggle"
+          ],
+          "fieldValue": [
+            false
+          ],
+          "fieldOptions": [
+            {
+              "optionName": "xyz",
+              "optionValue": 1
+            }
+          ]
+        }
+      
+    }
+  ]
+}

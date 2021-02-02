@@ -1,0 +1,177 @@
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.item-editor-comp {
+  height: 400px;
+  width: 50%;
+  border: 1px solid #000000;
+  text-align: center;
+}
+
+.header {
+  color: #ffffff;
+  font-size: 16px;
+  height: 50px;
+  background-color: gray;
+  width: 100%;
+}
+
+.header span {
+  float: left;
+  margin-top: 13px;
+  margin-left: 15px;
+}
+
+.header-buttons {
+  float: right;
+  margin-top: 10px;
+  margin-right: 15px;
+}
+
+.header-buttons button{
+  height: 27px;
+  width: 70px;
+  font-size: 16px;
+  border-radius: 1px;
+  background-color: white;
+  border: none;
+  color: black;
+}
+
+table {
+  width: 70%;
+  border: 1px solid #000;
+}
+
+.form-fields {
+  width: 50%;
+  float: right;
+  margin-top: -200px;
+}
+
+label {
+  float: left;
+  margin-left: 30px;
+}
+
+input, select {
+  display: block;
+  margin-left: 30px;
+  margin-top: 8px;
+  width: 80%;
+}
+
+.items {
+  float: left;
+  width: 50%;
+}
+
+.fields {
+  float: left;
+  width: 50%;
+  margin-top: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .5;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal {
+  z-index: 100;
+  background: white;
+  position: relative;
+  margin: 1.75rem auto;
+  border-radius: 3px;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-close-button {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  opacity: .3;
+  cursor: pointer;
+  border: none;
+}
+
+button {
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: .5rem;
+}
+
+.button-default {
+  background: #247BA0;
+  color: #fff;
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
